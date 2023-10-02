@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 
 function Folder({
@@ -14,9 +15,10 @@ function Folder({
 
   return (
     <>
-      <div
+      <Link
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        href={`/categories/${category.toLowerCase()}`}
         className="group cursor-pointer rounded border border-white/10"
       >
         <div className="relative flex items-center justify-center overflow-hidden before:absolute before:z-[5] before:h-full before:w-full  before:bg-black/0  group-hover:before:bg-black/50">
@@ -39,7 +41,7 @@ function Folder({
           <h3 className="text-xl">{category}</h3>
           <p className="text-white/60">{count} components</p>
         </div>
-      </div>
+      </Link>
     </>
   );
 }
