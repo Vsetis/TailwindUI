@@ -17,7 +17,7 @@ export default function Card({
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: variants.delay }}
         viewport={{ once: true }}
-        className=" w-full rounded border border-white/5 bg-gradient-to-r from-white/0 to-white/5 p-4 shadow-inner shadow-white/0 transition-all hover:shadow-white/5"
+        className=" rounded border border-white/5 border-b-transparent bg-gradient-to-r from-white/0 to-white/5 p-4 shadow-inner shadow-white/0 transition-all hover:shadow-white/5 md:max-w-[350px] [&:nth-child(2)]:bg-[#3a62c636]"
       >
         <div className="mb-4"> {icon}</div>
         <h3 className="mb-1 text-lg font-semibold text-white/80">{title}</h3>

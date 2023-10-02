@@ -2,11 +2,7 @@ import {
   IconBrandHtml5,
   IconBrandReact,
   IconBrandVue,
-  IconCashBanknoteOff,
-  IconCode,
-  IconFlame,
 } from "@tabler/icons-react";
-import Card from "~/components/Card";
 import Categories from "~/components/Components/Categories";
 import { motion } from "framer-motion";
 import { variants } from "~/constants/constants";
@@ -14,27 +10,6 @@ import { variants } from "~/constants/constants";
 const gradient = {
   borderRadius: "0 0 100% 100%",
 };
-
-const cards = [
-  {
-    title: "Flexible",
-    variants: { delay: 1.4, x: "5%" },
-    icon: IconFlame,
-    body: "All components are built with TailwindCSS, change colors, fonts, shadows and other properties.",
-  },
-  {
-    title: "React, Vue, and HTML",
-    variants: { delay: 1, x: "0" },
-    icon: IconCode,
-    body: "Interactive examples for React and Vue powered by Headless UI, plus vanilla HTML if you’d rather write any necessary JS yourself.",
-  },
-  {
-    title: "Free for everyone",
-    variants: { delay: 1.4, x: "-5%" },
-    icon: IconCashBanknoteOff,
-    body: "Free, open source, community-driven, MIT license. Use anywhere, including commercial projects.",
-  },
-];
 
 const categories = [
   {
@@ -54,7 +29,7 @@ const categories = [
   },
 ];
 
-const ease = [0, 0.71, 0.2, 1.01];
+const ease = [1, 0.71, 0.2, 1.01];
 
 export default function ComponentsPage() {
   return (
@@ -64,12 +39,19 @@ export default function ComponentsPage() {
         style={gradient}
       />
       <div className="container mx-auto">
-        <h1 className="mx-auto mb-8 max-w-[60%] bg-gradient-to-r from-white to-white/60 bg-clip-text pb-1 text-center text-6xl font-semibold  leading-tight tracking-tight text-transparent">
-          Find modern UI components for your website or web app
-        </h1>
-        <motion.p
+        <motion.h1
           variants={variants}
           transition={{ duration: 0.5 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mx-auto mb-8 max-w-[60%] bg-gradient-to-r from-white to-white/60 bg-clip-text pb-1 text-center text-6xl font-semibold  leading-tight tracking-tight text-transparent"
+        >
+          Find modern UI components for your website or web app
+        </motion.h1>
+        <motion.p
+          variants={variants}
+          transition={{ duration: 0.5, delay: 0.2 }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -116,29 +98,17 @@ export default function ComponentsPage() {
             <IconBrandVue className="text-white/60" size={48} />
           </motion.div>
         </div>
-        <div className="flex justify-center gap-8">
-          {cards.map((card) => (
-            <Card
-              variants={card.variants}
-              key={card.title}
-              title={card.title}
-              icon={<card.icon className="text-white/80" size={32} />}
-              body={card.body}
-            />
-          ))}
-        </div>
       </div>
       <div className="relative mt-32">
         <div className=" flex flex-col items-center bg-gradient-to-t from-white/0 to-sky-900/5">
           <div className="mb-32 h-[1px] w-full bg-gradient-to-r from-white/0 via-white/10 to-white/0" />
-
-          <div className="container relative mx-auto">
+          <div className="container relative mx-auto ">
             <motion.div
-              initial={{ opacity: 0, y: "-20%", scaleX: "10%" }}
-              whileInView={{ opacity: 1, y: 0, scaleX: "100%" }}
-              transition={{ ease: ease, duration: 1 }}
-              viewport={{ amount: 1 }}
-              className="absolute left-0 top-1/3 z-[-1] h-[70%] w-[80%] bg-sky-700/50 blur-[200px]"
+              initial={{ opacity: 0, y: "50%" }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ ...ease, duration: 0.5 }}
+              viewport={{ amount: 0.8 }}
+              className="absolute left-32 top-1/3 z-[-1] h-[40%] w-[40%] bg-sky-700/50 blur-[100px]"
             />
             {categories.map((category) => (
               <Categories
