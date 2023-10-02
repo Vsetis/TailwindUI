@@ -42,7 +42,7 @@ function Navbar() {
   const router = useRouter();
   return (
     <>
-      <div className="w-full bg-zinc-800 py-4">
+      <div className="mb-32 w-full bg-zinc-900 py-4">
         <div className="container mx-auto flex items-center justify-between px-8">
           <Link className=" font-semibold" href="/">
             Logo
@@ -100,7 +100,7 @@ export default function UI({ title }: { title: string }) {
             preview
               ? "items-center justify-center"
               : "items-start justify-start px-4 py-8"
-          } flex h-full min-h-[500px] `}
+          } flex h-full`}
         >
           {preview ? <Navbar /> : <NavbarCode />}
         </div>
