@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useUser } from "~/utils/atoms";
 
@@ -10,9 +11,17 @@ const links = [
 
 export default function Navbar() {
   const [user, setUser] = useUser();
+  console.log(user);
+
+  const { push } = useRouter();
+
+  const context = api.useContext();
+
   const logoutMutation = api.auth.logout.useMutation({
     onSuccess: () => {
+      context.auth.session.invalidate();
       setUser(null);
+      push("/");
     },
   });
   return (

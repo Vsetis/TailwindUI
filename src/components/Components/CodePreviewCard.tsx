@@ -1,5 +1,6 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import CodePreview from "./CodePreview";
+import { IconCopy } from "@tabler/icons-react";
 
 function ToggleButton({
   preview,
@@ -33,16 +34,18 @@ function ToggleButton({
   );
 }
 
-export default function UI({
+export default function CodePreviewCard({
   title,
   children,
   code,
 }: {
   title: string;
-  children: ReactNode;
+  children: React.ReactNode;
   code: string | string[];
 }) {
   const [preview, setPreview] = useState(true);
+  const [hover, setHover] = useState(false);
+
   return (
     <>
       <div className=" rounded bg-black">
@@ -51,7 +54,35 @@ export default function UI({
           <ToggleButton preview={preview} click={() => setPreview(!preview)} />
         </div>
         <div className={`${preview ? "" : "px-4 py-8"} flex h-full`}>
-          {preview ? <>{children}</> : <CodePreview>{code}</CodePreview>}
+          {preview ? (
+            <>
+              <div className="w-full ">{children}</div>
+            </>
+          ) : (
+            <div className="relative w-full">
+              <div className="relative ml-auto w-max">
+                <div className="flex items-center">
+                  <p
+                    className={`${
+                      hover ? "flex" : "hidden"
+                    } absolute left-0 translate-x-[-70px] rounded bg-white/80 px-3 py-1 text-sm font-semibold text-black/80`}
+                  >
+                    Copy
+                  </p>
+                  <button
+                    onMouseEnter={() => setHover(true)}
+                    onMouseLeave={() => setHover(false)}
+                    onClick={() =>
+                      navigator.clipboard.writeText(code.toString())
+                    }
+                  >
+                    <IconCopy className="h-6  w-6 text-white/60 transition-all hover:text-white/80" />
+                  </button>
+                </div>
+              </div>
+              <CodePreview>{code}</CodePreview>
+            </div>
+          )}
         </div>
       </div>
     </>

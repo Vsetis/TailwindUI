@@ -13,10 +13,10 @@ const links = [
     ],
   },
   {
-    title: "Using React",
+    title: "Using Next.js",
     links: [
-      { label: "Installing dependecies", target: "/docs#react" },
-      { label: "Creating components", target: "/docs#react-components" },
+      { label: "Installing dependecies", target: "/docs#next" },
+      { label: "Creating components", target: "/docs#next-components" },
     ],
   },
   {
@@ -41,7 +41,27 @@ const links = [
 ];
 
 function DocsMenu() {
-  return <></>;
+  return (
+    <>
+      <div>
+        {links.map((link) => (
+          <>
+            <h2 className="mb-4 text-2xl">{link.title}</h2>
+            <div className="mb-8 flex flex-col gap-4 border-l py-2 pl-4">
+              {link.links.map((link) => (
+                <Link
+                  className="transition-all hover:text-white/60"
+                  href={link.target}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </>
+        ))}
+      </div>
+    </>
+  );
 }
 
 export default function Docs() {
@@ -49,23 +69,7 @@ export default function Docs() {
     <>
       <div className="container mx-auto">
         <div className="flex">
-          <div>
-            {links.map((link) => (
-              <>
-                <h2 className="mb-4 text-2xl">{link.title}</h2>
-                <div className="mb-8 flex flex-col gap-4 border-l py-2 pl-4">
-                  {link.links.map((link) => (
-                    <Link
-                      className="transition-all hover:text-white/60"
-                      href={link.target}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </>
-            ))}
-          </div>
+          <DocsMenu />
         </div>
       </div>
     </>

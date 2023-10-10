@@ -1,17 +1,18 @@
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
+
+const links = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Navbar1() {
   const [open, setOpen] = useState(false);
-  const links = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Contact", href: "#contact" },
-  ];
-  const router = useRouter();
+  const [active, setActive] = useState("/#home");
+
   return (
     <>
       <div className="mb-32 w-full bg-zinc-900 py-4">
@@ -32,10 +33,12 @@ export default function Navbar1() {
           >
             {links.map((link) => (
               <Link
+                onClick={(e) => {
+                  setActive(`/${link.href}`);
+                  e.preventDefault();
+                }}
                 className={`${
-                  router.asPath.includes(link.href)
-                    ? "text-blue-500"
-                    : "text-white"
+                  active.includes(link.href) ? "text-blue-500" : "text-white"
                 } ${open ? "" : "hidden md:flex"} font-semibold `}
                 href={link.href}
               >

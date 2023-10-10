@@ -13,7 +13,6 @@ const gradient = {
   background: "rgb(22, 33, 62, 0.8)",
   height: "40%",
   width: "30%",
-  position: "absolute",
   top: 0,
   left: 0,
   borderRadius: "0  0 100%",
@@ -25,7 +24,6 @@ const gradient2 = {
   background: "rgb(22, 33, 62, 0.5)",
   height: "20%",
   width: "30%",
-  position: "absolute",
   right: 0,
   bottom: 0,
   borderRadius: "100% 0 0 ",
@@ -46,8 +44,8 @@ export default function RegisterPage() {
 
   return (
     <>
-      <div style={gradient} />
-      <div style={gradient2} />
+      <div className="absolute" style={gradient} />
+      <div className="absolute" style={gradient2} />
       <div className="flex h-screen items-center justify-center">
         <div>
           <h1 className="mb-16 text-center text-4xl font-semibold">
